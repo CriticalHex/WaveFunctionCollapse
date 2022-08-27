@@ -1,5 +1,6 @@
 import pygame
 import random
+import copy
 import numpy as np
 
 pygame.init()
@@ -24,7 +25,7 @@ TileImages = [Tile("Tile0.png", [0,0,0,0]),
 class Space:
     def __init__(self,xpos,ypos):
         self.collapsed = False
-        self.possibilities = TileImages.copy()
+        self.possibilities = copy.copy(TileImages)
         self.pos = (xpos,ypos)
         self.entropy = 5
         self.tile: Tile
