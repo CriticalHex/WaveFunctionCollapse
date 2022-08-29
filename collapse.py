@@ -5,25 +5,55 @@ import numpy as np
 
 pygame.init()
 pygame.display.set_caption("Wave Function Collapse")
-screen = pygame.display.set_mode((1000, 1000))
+screen = pygame.display.set_mode((1920, 1080))
 screen.fill((0,0,0))
 Running = True
 
 
 class Tile:
     def __init__(self, fileName: str, sideValues: list):
-        self.image = pygame.image.load("Tiles/"+fileName)
+        self.image = pygame.image.load("HalfTiles/"+fileName)
         self.sides = sideValues
         self.name = fileName
 
-TileImages = [Tile("Tile5.png", [0,1,0,1]),
+TileImages = [Tile("Tile0.png", [0,0,0,0]),
+            Tile("Tile1.png", [1,1,0,1]),
+            Tile("Tile2.png", [1,1,1,0]),
+            Tile("Tile3.png", [0,1,1,1]),
+            Tile("Tile4.png", [1,0,1,1]),
+            Tile("Tile5.png", [0,1,0,1]),
             Tile("Tile6.png", [1,0,1,0]),
             Tile("Tile7.png", [1,1,0,0]),
             Tile("Tile8.png", [0,1,1,0]),
             Tile("Tile9.png", [0,0,1,1]),
-            Tile("Tile10.png", [1,0,0,1])]
+            Tile("Tile10.png", [1,0,0,1]),
+            Tile("Tile15.png", [1,1,1,1])]
 
-# TileImages = [Tile("Tile0.png", [0,0,0,0]), 
+
+""" Only Corners
+TileImages = [Tile("Tile7.png", [1,1,0,0]),
+            Tile("Tile8.png", [0,1,1,0]),
+            Tile("Tile9.png", [0,0,1,1]),
+            Tile("Tile10.png", [1,0,0,1])]
+"""
+
+""" No End Pieces
+TileImages = [Tile("Tile0.png", [0,0,0,0]), 
+            Tile("Tile1.png", [1,1,0,1]),
+            Tile("Tile2.png", [1,1,1,0]),
+            Tile("Tile3.png", [0,1,1,1]),
+            Tile("Tile4.png", [1,0,1,1]),
+            Tile("Tile5.png", [0,1,0,1]),
+            Tile("Tile6.png", [1,0,1,0]),
+            Tile("Tile7.png", [1,1,0,0]),
+            Tile("Tile8.png", [0,1,1,0]),
+            Tile("Tile9.png", [0,0,1,1]),
+            Tile("Tile10.png", [1,0,0,1]),
+            Tile("Tile15.png", [1,1,1,1])]
+"""
+
+
+# TileImages = [Tile("Tile0.png", [0,0,0,0]),
 #             Tile("Tile1.png", [1,1,0,1]),
 #             Tile("Tile2.png", [1,1,1,0]),
 #             Tile("Tile3.png", [0,1,1,1]),
@@ -129,10 +159,10 @@ def makeGrid():
     global grid
     done = False
     grid = []
-    for i in range(int(screen.get_height()/100)):
+    for i in range(int(screen.get_height()/50)):
         grid.append([])
-        for j in range(int(screen.get_width()/100)):
-            grid[i].append(Space(j*100,i*100))
+        for j in range(int(screen.get_width()/50)):
+            grid[i].append(Space(j*50,i*50))
 
 makeGrid()
 
@@ -153,8 +183,8 @@ while Running:
         done = determine_possibilities()
         collapse()
 
-    for i in range(int(screen.get_height()/100)):
-        for j in range(int(screen.get_width()/100)):
+    for i in range(int(screen.get_height()/50)):
+        for j in range(int(screen.get_width()/50)):
             grid[i][j].draw()
 
     pygame.display.flip()
