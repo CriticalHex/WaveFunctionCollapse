@@ -12,63 +12,39 @@ Running = True
 
 class Tile:
     def __init__(self, fileName: str, sideValues: list):
-        self.image = pygame.image.load("HalfTiles/"+fileName)
+        self.image = pygame.image.load("BuildingTiles/"+fileName)
         self.sides = sideValues
         self.name = fileName
 
-TileImages = [Tile("Tile0.png", [0,0,0,0]), 
-            Tile("Tile1.png", [1,1,0,1]),
-            Tile("Tile2.png", [1,1,1,0]),
-            Tile("Tile3.png", [0,1,1,1]),
-            Tile("Tile4.png", [1,0,1,1]),
-            Tile("Tile5.png", [0,1,0,1]),
-            Tile("Tile6.png", [1,0,1,0]),
-            Tile("Tile7.png", [1,1,0,0]),
+TileImages = [Tile("Tile0.png", [0,0,0,0]),
+            Tile("Tile1.png", [1,1,1,1]),
+            Tile("Tile2.png", [1,1,1,1]),
+            Tile("Tile3.png", [0,2,1,2]),
+            Tile("Tile4.png", [0,0,3,2]),
+            Tile("Tile5.png", [0,2,4,0]),
+            Tile("Tile6.png", [4,1,4,0]),
+            Tile("Tile7.png", [3,0,3,1]),
+            Tile("Tile10.png", [4,1,1,2]),
+            Tile("Tile11.png", [3,2,1,1])]
+
+#Tile("Tile8.png", [0,2,3,0]),
+#Tile("Tile9.png", [0,0,3,4])
+
+# Tile("Tile8.png", [0,1,1,0]),
+# Tile("Tile9.png", [0,0,1,1])
+
+'''
+TileImages = [Tile("Tile0.png", [0,0,0,0]),
+            Tile("Tile1.png", [1,1,1,1]),
+            Tile("Tile2.png", [1,1,1,1]),
+            Tile("Tile3.png", [0,2,1,2]),
+            Tile("Tile4.png", [0,0,3,2]),
+            Tile("Tile5.png", [0,2,4,0]),
+            Tile("Tile6.png", [4,1,4,0]),
+            Tile("Tile7.png", [3,0,3,1]),
             Tile("Tile8.png", [0,1,1,0]),
-            Tile("Tile9.png", [0,0,1,1]),
-            Tile("Tile10.png", [1,0,0,1]),
-            Tile("Tile15.png", [1,1,1,1])]
-
-
-""" Only Corners
-TileImages = [Tile("Tile7.png", [1,1,0,0]),
-            Tile("Tile8.png", [0,1,1,0]),
-            Tile("Tile9.png", [0,0,1,1]),
-            Tile("Tile10.png", [1,0,0,1])]
-"""
-
-""" No End Pieces
-TileImages = [Tile("Tile0.png", [0,0,0,0]), 
-            Tile("Tile1.png", [1,1,0,1]),
-            Tile("Tile2.png", [1,1,1,0]),
-            Tile("Tile3.png", [0,1,1,1]),
-            Tile("Tile4.png", [1,0,1,1]),
-            Tile("Tile5.png", [0,1,0,1]),
-            Tile("Tile6.png", [1,0,1,0]),
-            Tile("Tile7.png", [1,1,0,0]),
-            Tile("Tile8.png", [0,1,1,0]),
-            Tile("Tile9.png", [0,0,1,1]),
-            Tile("Tile10.png", [1,0,0,1]),
-            Tile("Tile15.png", [1,1,1,1])]
-"""
-
-
-# TileImages = [Tile("Tile0.png", [0,0,0,0]),
-#             Tile("Tile1.png", [1,1,0,1]),
-#             Tile("Tile2.png", [1,1,1,0]),
-#             Tile("Tile3.png", [0,1,1,1]),
-#             Tile("Tile4.png", [1,0,1,1]),
-#             Tile("Tile5.png", [0,1,0,1]),
-#             Tile("Tile6.png", [1,0,1,0]),
-#             Tile("Tile7.png", [1,1,0,0]),
-#             Tile("Tile8.png", [0,1,1,0]),
-#             Tile("Tile9.png", [0,0,1,1]),
-#             Tile("Tile10.png", [1,0,0,1]),
-#             Tile("Tile11.png", [1,0,0,0]),
-#             Tile("Tile12.png", [0,1,0,0]),
-#             Tile("Tile13.png", [0,0,1,0]),
-#             Tile("Tile14.png", [0,0,0,1]),
-#             Tile("Tile15.png", [1,1,1,1])]
+            Tile("Tile9.png", [0,0,1,1])]
+'''
 
 class Space:
     def __init__(self,xpos,ypos):
@@ -159,10 +135,10 @@ def makeGrid():
     global grid
     done = False
     grid = []
-    for i in range(int(screen.get_height()/50)):
+    for i in range(int(screen.get_height()/100)):
         grid.append([])
-        for j in range(int(screen.get_width()/50)):
-            grid[i].append(Space(j*50,i*50))
+        for j in range(int(screen.get_width()/100)):
+            grid[i].append(Space(j*100,i*100))
 
 makeGrid()
 
@@ -183,8 +159,8 @@ while Running:
         done = determine_possibilities()
         collapse()
 
-    for i in range(int(screen.get_height()/50)):
-        for j in range(int(screen.get_width()/50)):
+    for i in range(int(screen.get_height()/100)):
+        for j in range(int(screen.get_width()/100)):
             grid[i][j].draw()
 
     pygame.display.flip()
