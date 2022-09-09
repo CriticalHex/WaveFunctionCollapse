@@ -2,10 +2,14 @@ import pygame
 import random
 import copy
 import numpy as np
+import os
+winX = 0
+winY = 0
+os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (winX,winY)
 
 pygame.init()
 pygame.display.set_caption("Wave Function Collapse")
-screen = pygame.display.set_mode((1920, 1080))
+screen = pygame.display.set_mode((1920*2, 1100))
 screen.fill((0,0,0))
 Running = True
 
@@ -19,7 +23,8 @@ class Tile:
 TileImages = [Tile("Tile0.png", [0,0,0,0]),
             Tile("Tile1.png", [1,1,1,1]),
             Tile("Tile2.png", [1,1,1,1]),
-            Tile("Tile3.png", [0,2,1,2]),
+            Tile("Tile4.png", [0,0,3,2]),
+            Tile("Tile5.png", [0,2,4,0]),
             Tile("Tile6.png", [4,1,4,0]),
             Tile("Tile7.png", [3,0,3,1]),
             Tile("Tile8.png", [0,2,4,0]),
@@ -142,6 +147,9 @@ def makeGrid():
 
 makeGrid()
 
+explainerMode = False
+ticker = 0
+
 while Running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -152,15 +160,32 @@ while Running:
         makeGrid()
     if keys[pygame.K_LCTRL]:
         Running = False
+        
+    if explainerMode:
+        
+        if keys[pygame.K_SPACE] and ticker % 6900 == 0:
+            screen.fill((0,0,0))
+            
+            if not done:
+                done = determine_possibilities()
+                collapse()
 
-    screen.fill((0,0,0))
-    
-    if not done:
-        done = determine_possibilities()
-        collapse()
+            for i in range(int(screen.get_height()/100)):
+                for j in range(int(screen.get_width()/100)):
+                    grid[i][j].draw()
 
-    for i in range(int(screen.get_height()/100)):
-        for j in range(int(screen.get_width()/100)):
-            grid[i][j].draw()
+            pygame.display.flip()
+        ticker += 1
+        
+    else:
+        screen.fill((0,0,0))
+        
+        if not done:
+            done = determine_possibilities()
+            collapse()
 
-    pygame.display.flip()
+        for i in range(int(screen.get_height()/100)):
+            for j in range(int(screen.get_width()/100)):
+                grid[i][j].draw()
+
+        pygame.display.flip()
