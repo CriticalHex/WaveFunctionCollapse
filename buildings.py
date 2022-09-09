@@ -20,18 +20,18 @@ TileImages = [Tile("Tile0.png", [0,0,0,0]),
             Tile("Tile1.png", [1,1,1,1]),
             Tile("Tile2.png", [1,1,1,1]),
             Tile("Tile3.png", [0,2,1,2]),
-            Tile("Tile4.png", [0,0,3,2]),
-            Tile("Tile5.png", [0,2,4,0]),
             Tile("Tile6.png", [4,1,4,0]),
             Tile("Tile7.png", [3,0,3,1]),
+            Tile("Tile8.png", [0,2,4,0]),
+            Tile("Tile9.png", [0,0,3,2]),
             Tile("Tile10.png", [4,1,1,2]),
             Tile("Tile11.png", [3,2,1,1])]
 
 #Tile("Tile8.png", [0,2,3,0]),
 #Tile("Tile9.png", [0,0,3,4])
 
-# Tile("Tile8.png", [0,1,1,0]),
-# Tile("Tile9.png", [0,0,1,1])
+#Tile("Tile8.png", [0,1,1,0]),
+#Tile("Tile9.png", [0,0,1,1])
 
 '''
 TileImages = [Tile("Tile0.png", [0,0,0,0]),
