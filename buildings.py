@@ -1,7 +1,6 @@
 import pygame
 import random
 import copy
-import numpy as np
 import os
 
 winX = 0
